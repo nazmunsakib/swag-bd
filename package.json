@@ -2,6 +2,9 @@
   "name": "swag-bd",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.18.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,7 +15,8 @@
   "dependencies": {
     "next": "15.1.6",
     "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react-dom": "19.0.0",
+    "sharp": "0.33.5"
   },
   "devDependencies": {
     "@types/node": "^22.10.7",
