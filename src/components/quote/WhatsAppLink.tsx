@@ -1,7 +1,7 @@
 "use client";
 
 import { whatsappLink, quoteMessage } from "@/data/business";
-import { track } from "@/lib/tracking";
+import { trackClick } from "@/lib/tracking";
 import { WhatsAppIcon } from "@/components/ui/Icons";
 
 type Props = {
@@ -24,7 +24,10 @@ export function WhatsAppLink({
       href={href}
       target="_blank"
       rel="noreferrer"
-      onClick={() => track("whatsapp_clicked", { product })}
+      data-tracking-id="whatsapp-link"
+      onClick={(event) =>
+        trackClick("ask_on_whatsapp_click", event.currentTarget, { product })
+      }
       className={`group inline-flex items-center gap-2 text-[13px] font-semibold text-ink transition-colors hover:text-clay ${className}`}
     >
       <WhatsAppIcon className="h-4 w-4 text-clay" aria-hidden />

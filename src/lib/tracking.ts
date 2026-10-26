@@ -1,6 +1,6 @@
 export type LeadEvent =
   | "quote_button_clicked"
-  | "whatsapp_clicked"
+  | "ask_on_whatsapp_click"
   | "quote_form_started"
   | "quote_form_submitted"
   | "product_viewed";
@@ -28,4 +28,19 @@ export function track(event: LeadEvent, payload: LeadEventPayload = {}) {
   if (Array.isArray(dataLayer)) {
     dataLayer.push(detail);
   }
+}
+
+export function trackClick(
+  event: LeadEvent,
+  element: HTMLElement,
+  payload: LeadEventPayload = {}
+) {
+  track(event, {
+    ...payload,
+    button_text: element.textContent?.trim().replace(/\s+/g, " ") ?? "",
+    button_id: element.id || element.dataset.trackingId || "",
+    button_classes:
+      typeof element.className === "string" ? element.className : "",
+    page_location: window.location.href,
+  });
 }
