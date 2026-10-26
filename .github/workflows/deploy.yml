@@ -40,8 +40,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ${{ vars.FTP_PROTOCOL || 'ftp' }}
           port: ${{ vars.FTP_PORT || 21 }}
-          server-dir: ${{ secrets.FTP_DIR }}
+          server-dir: ${{ secrets.FTP_DIR || vars.FTP_DIR }}
           local-dir: ./out/
-          include: |
-            **/*
-            **/.htaccess

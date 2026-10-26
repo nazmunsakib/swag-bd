@@ -9,10 +9,10 @@ Add these repository secrets under **Settings > Secrets and variables > Actions*
 - `FTP_SERVER`: FTP hostname or IP address
 - `FTP_USERNAME`: hosting FTP username
 - `FTP_PASSWORD`: hosting FTP password
+
+Add these Actions variables:
+
 - `FTP_DIR`: domain document root, commonly `/public_html/`; it must end with `/`
-
-Optionally add these Actions variables:
-
 - `FTP_PROTOCOL`: `ftps` if supported by the host; defaults to `ftp`
 - `FTP_PORT`: FTP/FTPS port; defaults to `21`
 
