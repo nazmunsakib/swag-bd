@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { CatalogProduct } from "@/data/types";
 import { ProductCard } from "@/components/products/ProductCard";
 
@@ -23,6 +23,11 @@ const FILTERS = [
 
 export function DiscoverGrid({ products, initialFilter }: Props) {
   const [filter, setFilter] = useState(initialFilter);
+
+  useEffect(() => {
+    const requestedFilter = new URLSearchParams(window.location.search).get("filter");
+    if (requestedFilter && FILTERS.includes(requestedFilter)) setFilter(requestedFilter);
+  }, []);
 
   const visible = useMemo(() => {
     if (filter === "All") return products;

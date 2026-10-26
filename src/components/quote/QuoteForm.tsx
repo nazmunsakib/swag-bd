@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { whatsappLink } from "@/data/business";
 import { track } from "@/lib/tracking";
 import { WhatsAppIcon } from "@/components/ui/Icons";
@@ -69,6 +69,13 @@ export function QuoteForm({ productOptions, initialProduct }: Props) {
   const [notes, setNotes] = useState("");
   const [file, setFile] = useState("");
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    const requestedProduct = new URLSearchParams(window.location.search).get("product");
+    if (requestedProduct && productOptions.includes(requestedProduct)) {
+      setProduct(requestedProduct);
+    }
+  }, [productOptions]);
 
   const isApparel = APPAREL.includes(product);
 

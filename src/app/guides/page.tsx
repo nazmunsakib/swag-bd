@@ -3,8 +3,7 @@ import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { GuidesGrid } from "@/components/guides/GuidesGrid";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { collectionPageSchema } from "@/lib/schema";
-import { articles, guideFilters } from "@/data/articles";
-import type { GuideFilter } from "@/data/types";
+import { articles } from "@/data/articles";
 import { imageFor } from "@/data/images";
 import { ogMeta } from "@/lib/seo";
 
@@ -21,20 +20,7 @@ export const metadata: Metadata = {
   }),
 };
 
-type Props = {
-  searchParams: Promise<{ filter?: string }>;
-};
-
-function normalizeFilter(value: string | undefined): GuideFilter {
-  if (value && (guideFilters as readonly string[]).includes(value)) {
-    return value as GuideFilter;
-  }
-  return "All";
-}
-
-export default async function GuidesPage({ searchParams }: Props) {
-  const { filter } = await searchParams;
-
+export default function GuidesPage() {
   return (
     <>
       <JsonLd
@@ -60,7 +46,7 @@ export default async function GuidesPage({ searchParams }: Props) {
         </p>
       </section>
 
-      <GuidesGrid articles={articles} initialFilter={normalizeFilter(filter)} />
+      <GuidesGrid articles={articles} initialFilter="All" />
     </>
   );
 }

@@ -12,10 +12,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/quote" },
 };
 
-type Props = {
-  searchParams: Promise<{ product?: string }>;
-};
-
 const steps = [
   { number: "01", title: "Tell us what you need", description: "Fill in the form. It takes two minutes." },
   { number: "02", title: "Receive your quotation", description: "We reply on WhatsApp, usually within a working day." },
@@ -23,10 +19,8 @@ const steps = [
   { number: "04", title: "Production and delivery", description: "We produce, quality check and deliver across Bangladesh." },
 ];
 
-export default async function QuotePage({ searchParams }: Props) {
-  const { product } = await searchParams;
+export default function QuotePage() {
   const options = [...customProducts, ...catalogProducts].map((p) => p.name);
-  const initial = product && options.includes(product) ? product : "";
 
   return (
     <>
@@ -82,7 +76,7 @@ export default async function QuotePage({ searchParams }: Props) {
         </div>
 
         <div className="lg:col-span-7">
-          <QuoteForm productOptions={options} initialProduct={initial} />
+          <QuoteForm productOptions={options} />
         </div>
       </section>
     </>

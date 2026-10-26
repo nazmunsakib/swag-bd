@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import type { Article, GuideFilter } from "@/data/types";
 import { guideFilters } from "@/data/articles";
@@ -18,6 +18,13 @@ type Props = {
 export function GuidesGrid({ articles, initialFilter = "All" }: Props) {
   const [active, setActive] = useState<GuideFilter>(initialFilter);
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    const requestedFilter = new URLSearchParams(window.location.search).get("filter");
+    if (requestedFilter && (guideFilters as readonly string[]).includes(requestedFilter)) {
+      setActive(requestedFilter as GuideFilter);
+    }
+  }, []);
 
   const filtered = useMemo(() => {
     let result = articles;

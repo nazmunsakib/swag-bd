@@ -2,20 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  output: "export",
   images: {
+    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "plus.unsplash.com" },
     ],
-  },
-  async redirects() {
-    return [
-      {
-        source: "/shop",
-        destination: "/discover",
-        permanent: true,
-      },
-    ];
   },
 };
 

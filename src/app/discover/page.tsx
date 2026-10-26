@@ -20,15 +20,7 @@ export const metadata: Metadata = {
   }),
 };
 
-type Props = {
-  searchParams: Promise<{ filter?: string }>;
-};
-
-export default async function DiscoverPage({ searchParams }: Props) {
-  const { filter } = await searchParams;
-  const validFilters = ["All", "Custom", "Watches", "Sunglasses", "Wristbands", "Bracelets", "Bags", "Wallets", "Keychains"];
-  const initial = filter && validFilters.includes(filter) ? filter : "All";
-
+export default function DiscoverPage() {
   return (
     <>
       <Breadcrumbs
@@ -49,7 +41,7 @@ export default async function DiscoverPage({ searchParams }: Props) {
         </p>
       </section>
 
-      <DiscoverGrid products={getAllProducts()} initialFilter={initial} />
+      <DiscoverGrid products={getAllProducts()} initialFilter="All" />
 
       <JsonLd
         data={itemListSchema(

@@ -3,6 +3,8 @@ import { siteConfig, categories } from "@/data/categories";
 import { articles } from "@/data/articles";
 import { customProducts, catalogProducts } from "@/data/products";
 
+export const dynamic = "force-static";
+
 const customHubRoutes = [
   "/custom/merchandise",
   "/custom/printing",
