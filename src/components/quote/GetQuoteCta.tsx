@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { whatsappLink, quoteMessage } from "@/data/business";
-import { track, trackClick } from "@/lib/tracking";
+import { trackClick } from "@/lib/tracking";
 import { WhatsAppIcon } from "@/components/ui/Icons";
 
 type Props = {
@@ -30,7 +30,10 @@ export function GetQuoteCta({ product, size = "lg", align = "left", onDark = fal
     >
       <Link
         href={quoteHref}
-        onClick={() => track("quote_button_clicked", { product })}
+        data-tracking-id="get-a-quote"
+        onClick={(event) =>
+          trackClick("quote_button_clicked", event.currentTarget, { product })
+        }
         className={`inline-flex items-center justify-center gap-2 ${padding} bg-clay font-sans font-semibold uppercase tracking-label text-white transition-colors hover:bg-clay-deep`}
       >
         Get a Quote
