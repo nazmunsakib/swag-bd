@@ -1,5 +1,6 @@
 Options -MultiViews
 RewriteEngine On
+AddType text/xsl .xsl
 
 RewriteRule ^shop/?$ /discover [R=301,L]
 
